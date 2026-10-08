@@ -1,0 +1,6 @@
+{
+  "name": "Portal de Commodities e Renda Fixa",
+  "description": "Portal institucional e terminal financeiro premium focado em Commodities Globais, Renda Fixa e o TopSite Enterprise Command Center (ECC) powered by EIGE, desenvolvido sob padrões de elite com ferramentas de hedge, simuladores em tempo real e governança executiva por IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

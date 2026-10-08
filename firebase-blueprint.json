@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "TIAM Identity & Access Manager user accounts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string" },
+        "company": { "type": "string" },
+        "phone": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "lastLoginAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "email", "fullName", "role", "status"]
+    },
+    "invitations": {
+      "title": "TIAM Invitation",
+      "description": "Programmable access invitations and tokens",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "token": { "type": "string" },
+        "roleTarget": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "expiresAt": { "type": "string", "format": "date-time" },
+        "maxUses": { "type": "number" },
+        "currentUses": { "type": "number" },
+        "status": { "type": "string" },
+        "assignedEmail": { "type": "string" }
+      },
+      "required": ["id", "code", "roleTarget", "createdBy", "status"]
+    },
+    "leads": {
+      "title": "Institutional Lead",
+      "description": "Leads submitted via contact and opportunity forms",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "company": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email", "status"]
+    },
+    "marketQuotes": {
+      "title": "Market Quote Cache",
+      "description": "Cached market prices for commodities, currencies and bonds",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "price": { "type": "number" },
+        "change": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "price", "change"]
+    }
+  }
+}

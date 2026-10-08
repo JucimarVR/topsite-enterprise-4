@@ -1,0 +1,101 @@
+--- src/components/Ticker.tsx
++++ src/components/Ticker.tsx
+@@ -21,6 +21,7 @@
+   // Modal State for Active Intelligence Window
+   const [selectedAsset, setSelectedAsset] = useState<any | null>(null);
+   const [activeModalTab, setActiveModalTab] = useState<'overview' | 'ai'>('overview');
++  const [showWebmasterModal, setShowWebmasterModal] = useState(false);
+   const [hoveredPointIdx, setHoveredPointIdx] = useState<number | null>(null);
+ 
+   // Base list of 30 assets defined strictly as requested in TEEMS-TICKER-021
+@@ -136,7 +137,8 @@
+   const handleCardClick = (cardType: string) => {
+     let viewName = 'home';
+     if (cardType === 'webmaster') {
+-      viewName = 'sobre';
++      setShowWebmasterModal(true);
++      return;
+     } else if (cardType === 'trader_pro') {
+       viewName = 'commodities';
+     } else if (cardType === 'topsite_oficial') {
+@@ -370,6 +372,77 @@
+             </motion.div>
+           </div>
+         )}
++
++        {showWebmasterModal && (
++          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
++            <motion.div 
++              initial={{ opacity: 0, scale: 0.95, y: 20 }}
++              animate={{ opacity: 1, scale: 1, y: 0 }}
++              exit={{ opacity: 0, scale: 0.95, y: 20 }}
++              className="bg-slate-900 border border-slate-800 rounded-2xl w-[800px] max-w-full h-[500px] overflow-hidden flex flex-col shadow-2xl"
++            >
++              <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
++                <h3 className="font-bold text-white flex items-center gap-2">
++                  <Briefcase size={18} className="text-brand-gold" />
++                  Especialidades - Juccimar Vieira da Rocha
++                </h3>
++                <button onClick={() => setShowWebmasterModal(false)} className="text-slate-500 hover:text-white transition-colors">
++                  <X size={20} />
++                </button>
++              </div>
++              <div className="flex-1 overflow-y-auto p-6 space-y-6">
++                <div className="text-center mb-6">
++                  <img src={webMasterImg} alt="Juccimar" className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-brand-gold" />
++                  <h4 className="text-lg font-bold text-white">Juccimar Vieira da Rocha</h4>
++                  <p className="text-brand-gold font-medium">TopSite</p>
++                </div>
++                <div className="grid md:grid-cols-2 gap-4">
++                  {/* Ativas */}
++                  <div className="bg-slate-950 p-5 rounded-xl border border-brand-gold/30 hover:border-brand-gold transition-colors cursor-pointer group" onClick={() => window.open('https://topsite-oficial.web.app/', '_blank')}>
++                    <div className="flex items-center gap-3 mb-2">
++                      <Globe className="text-brand-gold group-hover:text-brand-gold/80" size={20} />
++                      <h5 className="font-bold text-white">Especialista em Desenvolvimento Web</h5>
++                    </div>
++                    <p className="text-sm text-slate-400">Soluções completas e escaláveis para web.</p>
++                  </div>
++                  <div className="bg-slate-950 p-5 rounded-xl border border-brand-gold/30 hover:border-brand-gold transition-colors cursor-pointer group" onClick={() => window.open('https://drjussararochaesteticista.com.br/', '_blank')}>
++                    <div className="flex items-center gap-3 mb-2">
++                      <Code className="text-brand-gold group-hover:text-brand-gold/80" size={20} />
++                      <h5 className="font-bold text-white">Especialista em Sistemas HTML</h5>
++                    </div>
++                    <p className="text-sm text-slate-400">Desenvolvimento de sistemas front-end.</p>
++                  </div>
++                  {/* Inativas / Futuras */}
++                  <div className="bg-slate-900/50 p-5 rounded-xl border border-slate-800 opacity-60">
++                    <div className="flex items-center gap-3 mb-2">
++                      <Activity className="text-slate-500" size={20} />
++                      <h5 className="font-bold text-slate-300">Especialista em APIs e Integrações</h5>
++                    </div>
++                    <p className="text-sm text-slate-500">Preparado para futura configuração.</p>
++                  </div>
++                  <div className="bg-slate-900/50 p-5 rounded-xl border border-slate-800 opacity-60">
++                    <div className="flex items-center gap-3 mb-2">
++                      <Database className="text-slate-500" size={20} />
++                      <h5 className="font-bold text-slate-300">Engenharia de Dados (Cloud)</h5>
++                    </div>
++                    <p className="text-sm text-slate-500">Preparado para futura configuração.</p>
++                  </div>
++                  <div className="bg-slate-900/50 p-5 rounded-xl border border-slate-800 opacity-60">
++                    <div className="flex items-center gap-3 mb-2">
++                      <Bot className="text-slate-500" size={20} />
++                      <h5 className="font-bold text-slate-300">IA Corporativa (TAIE)</h5>
++                    </div>
++                    <p className="text-sm text-slate-500">Preparado para futura configuração.</p>
++                  </div>
++                  <div className="bg-slate-900/50 p-5 rounded-xl border border-slate-800 opacity-60">
++                    <div className="flex items-center gap-3 mb-2">
++                      <Shield className="text-slate-500" size={20} />
++                      <h5 className="font-bold text-slate-300">Segurança Cibernética</h5>
++                    </div>
++                    <p className="text-sm text-slate-500">Preparado para futura configuração.</p>
++                  </div>
++                </div>
++              </div>
++            </motion.div>
++          </div>
++        )}
+       </AnimatePresence>
+     </>
+   );
